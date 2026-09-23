@@ -5,7 +5,7 @@ export default function Home() {
     <div className="w-full items-center  min-h-screen flex justify-center">
       <div>
         <p className=" text-md font-sans font-medium">
-          Omnify were all came togther{" "}
+          Omnify were all came togther one place{" "}
         </p>
       </div>
     </div>
