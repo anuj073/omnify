@@ -24,7 +24,7 @@ export const NavBar = () => {
 
   return (
     <header className="w-full ">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-2 sm:px-4">
         {/* Logo */}
         <Link
           href="/"
@@ -43,10 +43,10 @@ export const NavBar = () => {
           </div> */}
 
           {/* Wordmark */}
-          <p className="text-[16px] text-neutral-900 font-semibold tracking-[-0.03em] ">
+          <h1 className="text-[20px] text-neutral-900 font-semibold tracking-[-0.03em] ">
             Omin
             <span className="text-primary">fy</span>
-          </p>
+          </h1>
         </Link>
 
         {/* Navigation */}
@@ -65,8 +65,16 @@ export const NavBar = () => {
         {/* Actions */}
         <div className="flex items-center gap-5 ">
           <Link
-            href="/signup"
-            className="rounded-md border-[1.5px] border-blue-400  px-2.5 py-1 text-[12px] font-medium  shadow-primary/50 hover:text-neutral-100
+            href="/login"
+            className=" rounded-md  sm:block hidden px-2.5 py-1 text-[14px] font-medium  shadow-primary/50 
+            font-sans  text-neutral-700   hover:text-neutral-500
+             hover:opacity-90 transition-all duration-300"
+          >
+            Login
+          </Link>
+          <Link
+            href="/register"
+            className=" rounded-md border-[1.5px] border-primary/70  px-2.5 py-1 text-[12px] font-medium  shadow-primary/50 hover:text-neutral-100
             font-sans bg-primary/90 text-foreground  
              hover:opacity-90 transition-all duration-300"
           >
