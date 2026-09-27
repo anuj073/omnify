@@ -15,10 +15,10 @@ export const LoginPage = () => {
   };
 
   return (
-    <Card className=" mx-auto w-full p-0 bg-transparent sm:border-[1.5px] border-neutral-300  rounded sm:rounded-[14px]">
+    <Card className=" mx-auto w-full p-0 bg-transparent sm:border-[1.5px] border-neutral-100  rounded sm:rounded-[14px]">
       <div className="  grid grid-cols-1 sm:grid-cols-2 gap-1 ">
         {/*Left side */}
-        <div className="  px-4 py-6 hidden sm:block bg-foreground">
+        <div className="  px-4 py-6 hidden sm:block ">
           <div className="flex items-center text-left tracking-tight">
             <div className="relative  flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-md ">
               <Image
@@ -138,7 +138,7 @@ export const LoginPage = () => {
                   Forgot password
                 </Link>
               </div>
-              <button className="w-full text-balance  hover:bg-primary/80  transition-all  duration-300 ease-in-out py-2 cursor-pointer text-foreground bg-primary rounded-[6px] text-center font-sans font-medium">
+              <button className="w-full text-balance  hover:bg-primary/80  transition-all  duration-300 ease-in-out py-2 cursor-pointer text-secondary bg-primary rounded-[6px] text-center font-sans font-medium">
                 Sigin in
               </button>
             </div>

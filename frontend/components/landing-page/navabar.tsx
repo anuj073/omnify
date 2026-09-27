@@ -75,7 +75,7 @@ export const NavBar = () => {
           <Link
             href="/register"
             className=" rounded-md border-[1.5px] border-primary/70  px-2.5 py-1 text-[12px] font-medium  shadow-primary/50 hover:text-neutral-100
-            font-sans bg-primary/90 text-foreground  
+            font-sans bg-primary/90 text-secondary  
              hover:opacity-90 transition-all duration-300"
           >
             Get started

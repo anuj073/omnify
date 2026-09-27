@@ -12,7 +12,7 @@ export const HeroSection = () => {
               </span>
               <span className="text-primary font-bold">Lose Nothing.</span>
             </h1>
-            <p className=" dark:text-neutral-700 text-neutral-100  max-w-lg font-sans  tracking-tighter w-full  leading-normal  text-[12px] sm:text-[16px] ">
+            <p className=" text-neutral-700  max-w-lg font-sans  tracking-tighter w-full  leading-normal  text-[12px] sm:text-[16px] ">
               Bring all your apps, tools, and workflows together in one seamless
               workspace, without the hassle of switching between them.
             </p>
@@ -21,7 +21,7 @@ export const HeroSection = () => {
           <Link
             href="/register"
             className="rounded-md w-fit   border-[1.5px] border-primary/70   px-2.5 py-1  ms:text-[14px] text-[12px] font-medium  shadow-primary/40 hover:text-neutral-50
-            font-sans bg-primary/90 text-foreground  
+            font-sans bg-primary/90 text-secondary  
              hover:opacity-80 transition-all duration-300"
           >
             Bring It Together

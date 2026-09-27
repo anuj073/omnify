@@ -13,15 +13,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn("antialiased", fontVariables)}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-        >
-          <main className="bg-foreground text-foreground min-h-screen">
-            {children}
-          </main>
-        </ThemeProvider>
+        <main className="bg-background  min-h-screen">{children}</main>
       </body>
     </html>
   );
