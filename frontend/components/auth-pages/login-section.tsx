@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Eye, EyeClosed, Lock, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { lazy, useState } from "react";
 
 export const LoginPage = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -15,55 +15,84 @@ export const LoginPage = () => {
   };
 
   return (
-    <Card className=" mx-auto w-full p-0 bg-transparent sm:border-[1.5px] border-neutral-100  rounded sm:rounded-[14px]">
+    <Card className=" mx-auto w-full p-0 bg-transparent   rounded sm:rounded-[14px]">
       <div className="  grid grid-cols-1 sm:grid-cols-2 gap-1 ">
         {/*Left side */}
-        <div className="  px-4 py-6 hidden sm:block ">
-          <div className="flex items-center text-left tracking-tight">
-            <div className="relative  flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-md ">
-              <Image
-                src="/images/logo.png"
-                alt="Omnify"
-                fill
-                priority
-                sizes="20"
-                className="object-contain transition-transform duration-200 group-hover:scale-105"
-              />
+        {/* Left side */}
+        <div className="hidden sm:flex flex-col relative overflow-hidden px-6 py-6">
+          {/* Logo */}
+          <div className="flex items-center gap-1 tracking-tight">
+            <div className="flex h-5.5 w-5.5 shrink-0 items-center justify-center overflow-hidden rounded-[7px] border border-primary bg-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="text-background"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10s-10-4.477-10-10s4.477-10 10-10m0 5a3 3 0 0 0-3 3v4a3 3 0 0 0 6 0v-4a3 3 0 0 0-3-3m0 2a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1" />
+              </svg>
             </div>
-            {/* Wordmark */}
-            <h1 className="text-[16px] text-neutral-900 font-sans font-semibold tracking-[-0.03em] ">
-              Ominfy
+
+            <h1 className="text-[16px] font-semibold tracking-[-0.03em] text-neutral-900">
+              Omnify
             </h1>
           </div>
-          <div className="px-0 py-10">
+
+          {/* Text */}
+          <div className="pt-10">
             <span className="text-md font-sans font-medium text-primary">
               Your world, connected
             </span>
-            <h1 className=" mt-1.5 text-neutral-900 flex flex-col leading-none text-4xl font-sans font-semibold tracking-tighter">
-              All your apps,tools,{" "}
-              <span className="text-primary text-3xl  font-sans font-semibold">
+
+            <h1 className="mt-1.5 flex flex-col text-4xl font-semibold font-sans leading-none tracking-tighter text-neutral-900">
+              All your apps, tools,
+              <span className="text-3xl font-semibold text-primary">
                 in one place
               </span>
             </h1>
-            <p className="text-sm font-sans text-neutral-600 max-w-sm ">
+
+            <p className="mt-4 max-w-sm text-sm text-neutral-600 font-sans">
               Omnify brings everything you need together so you can focus on
               what truly matters.
             </p>
           </div>
-        </div>
-        {/*Right  side */}
 
+          {/* Image */}
+          <div className="relative mt-6 min-h-[280px] flex-1 overflow-hidden">
+            <Image
+              src="/images/main-image.png"
+              alt="Omnify dashboard"
+              fill
+              priority
+              sizes="(max-width: 1024px) 50vw, 600px"
+              className="object-contain object-center"
+            />
+          </div>
+          <div>
+            <p className="text-[10px] font-sans font-medium text-neutral-600">
+              @2026 Omnify
+            </p>
+          </div>
+        </div>
+
+        {/*Right  side */}
         <div className="py-6 px-2 sm:px-8  bg-white">
-          <div className="flex items-center text-left tracking-tight py-6">
-            <div className="relative  flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-md ">
-              <Image
-                src="/images/logo.png"
-                alt="Omnify"
-                fill
-                priority
-                sizes="20"
-                className="object-contain transition-transform duration-200 group-hover:scale-105"
-              />
+          <div className="flex items-center gap-1  text-left tracking-tight py-6">
+            <div className="   flex h-5.5 w-5.5 rounded-[7px] bg-primary  border-primary border shrink-0 items-center justify-center overflow-hidden  ">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="icon icon-tabler  icons-tabler-filled icon-tabler-circle-letter-o text-background"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10 -10 10s-10 -4.477 -10 -10s4.477 -10 10 -10m0 5a3 3 0 0 0 -3 3v4a3 3 0 0 0 6 0v-4a3 3 0 0 0 -3 -3m0 2a1 1 0 0 1 1 1v4a1 1 0 0 1 -2 0v-4a1 1 0 0 1 1 -1" />
+              </svg>
             </div>
             {/* Wordmark */}
             <h1 className="text-[20px] text-neutral-900 font-sans font-semibold tracking-[-0.03em] ">
@@ -81,7 +110,7 @@ export const LoginPage = () => {
           {/*Form Section */}
           <div className=" py-6 flex flex-col gap-4  ">
             <div className="  flex flex-col gap-1 p-0 ">
-              <h1 className=" px-0.5  text-base font-medium font-sans text-left text-neutral-600">
+              <h1 className=" px-0.5  text-sm font-medium font-sans text-left text-neutral-600">
                 Email address
               </h1>
               <div className="relative w-full">
@@ -98,7 +127,7 @@ export const LoginPage = () => {
               </div>
             </div>
             <div className="  flex flex-col gap-1  mt-1">
-              <h1 className=" px-0.5  text-base font-medium font-sans text-left text-neutral-600">
+              <h1 className=" px-0.5  text-sm font-medium font-sans text-left text-neutral-600">
                 Password
               </h1>
               <div className="relative w-full">
