@@ -6,6 +6,7 @@ import { env } from "./config/env";
 import { authRouter } from "./routes/auth";
 import { conversationsRouter } from "./routes/conversations";
 import { messagesRouter } from "./routes/messages";
+import { usersRouter } from "./routes/users";
 import { errorHandler, notFound } from "./middleware/errors";
 
 export const app = express();
@@ -17,6 +18,7 @@ app.use(express.json({ limit: "1mb" }));
 
 app.get("/api/health", (_req, res) => res.json({ status: "ok", service: "omnify-backend" }));
 app.use("/api/auth", rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHeaders: "draft-8", legacyHeaders: false }), authRouter);
+app.use("/api/users", usersRouter);
 app.use("/api/conversations", conversationsRouter);
 app.use("/api/messages", messagesRouter);
 app.use(notFound);
