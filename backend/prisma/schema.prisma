@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ConversationType {
+  DIRECT
+  GROUP
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  FILE
+  AUDIO
+  VIDEO
+  SYSTEM
+}
+
+model User {
+  id           String               @id @default(uuid()) @db.Uuid
+  name         String
+  email        String               @unique
+  passwordHash String               @map("password_hash")
+  avatarUrl    String?              @map("avatar_url")
+  createdAt    DateTime             @default(now()) @map("created_at")
+  updatedAt    DateTime             @updatedAt @map("updated_at")
+  messages     Message[]
+  memberships ConversationMember[]
+  receipts     MessageReceipt[]
+
+  @@map("users")
+}
+
+model Conversation {
+  id        String               @id @default(uuid()) @db.Uuid
+  type      ConversationType     @default(DIRECT)
+  title     String?
+  createdAt DateTime             @default(now()) @map("created_at")
+  updatedAt DateTime             @updatedAt @map("updated_at")
+  members   ConversationMember[]
+  messages  Message[]
+
+  @@index([updatedAt])
+  @@map("conversations")
+}
+
+model ConversationMember {
+  id             String       @id @default(uuid()) @db.Uuid
+  conversationId String       @db.Uuid @map("conversation_id")
+  userId         String       @db.Uuid @map("user_id")
+  joinedAt       DateTime     @default(now()) @map("joined_at")
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([conversationId, userId])
+  @@index([userId])
+  @@map("conversation_members")
+}
+
+model Message {
+  id             String        @id @default(uuid()) @db.Uuid
+  conversationId String        @db.Uuid @map("conversation_id")
+  senderId       String        @db.Uuid @map("sender_id")
+  content        String        @db.VarChar(5000)
+  type           MessageType   @default(TEXT)
+  createdAt      DateTime      @default(now()) @map("created_at")
+  editedAt       DateTime?     @map("edited_at")
+  deletedAt      DateTime?     @map("deleted_at")
+  conversation   Conversation  @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender         User          @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  receipts       MessageReceipt[]
+
+  @@index([conversationId, createdAt(sort: Desc)])
+  @@index([senderId])
+  @@map("messages")
+}
+
+model MessageReceipt {
+  id          String    @id @default(uuid()) @db.Uuid
+  messageId   String    @db.Uuid @map("message_id")
+  userId      String    @db.Uuid @map("user_id")
+  deliveredAt DateTime? @map("delivered_at")
+  readAt      DateTime? @map("read_at")
+  message     Message   @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([messageId, userId])
+  @@index([userId, readAt])
+  @@map("message_receipts")
+}
